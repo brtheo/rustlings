@@ -18,6 +18,7 @@
 // - The output element is going to be a Vector of strings.
 // No hints this time!
 
+
 pub enum Command {
     Uppercase,
     Trim,
@@ -29,30 +30,13 @@ mod my_module {
 
     // TODO: Complete the function signature!
     pub fn transformer(mut input: Vec::<(String,Command)>) -> Vec::<String> {
-        // TODO: Complete the output declaration!
-        let mut output: Vec::<String> = vec![];
-        for (string, command) in input.iter_mut() {
-          output.push(
-            match command {
-              Command::Uppercase => string.to_uppercase(),
-              Command::Trim => string.trim().to_string(),
-              Command::Append(n) => string.to_string() + &vec!["bar";*n].concat().to_string()
-            }
-          )
-            // match command {
-            //   Command::Uppercase => output.push(string.to_uppercase()),
-            //   Command::Trim => output.push(string.trim().to_string()),
-            //   Command::Append(n) => output.push(string.to_string() + &vec!["bar";*n].concat().to_string())
-              
-            //   // Command::Append(n) => {
-            //   //   for _i in 0..*n {
-            //   //     *string += "bar"
-            //   //   }
-            //   //   output.push(string.to_string())
-            //   // }
-            // }
-        }
-        output
+      input.into_iter()
+      .map(|(string, command)| match command {
+        Command::Uppercase => string.to_uppercase(),
+        Command::Trim => string.trim().to_string(),
+        Command::Append(n) => string.to_string() + &vec!["bar";n].concat().to_string()
+      })
+      .collect()
     }
 }
 
